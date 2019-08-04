@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/9.PNG">
 <meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/10.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/11.PNG">
-<meta property="og:updated_time" content="2019-08-04T10:19:45.775Z">
+<meta property="og:updated_time" content="2019-08-04T10:21:53.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ADTF Filter Entwicklungsprozess">
 <meta name="twitter:description" content="Automotive data and time-triggered framework (ADTF) ist die weltweit am häufigsten eingesetzte Entwicklungs- und Testumgebung für Fahrerassistenzsysteme. ADTF ist auch ein flexibles Framework. Man kan">
@@ -249,7 +249,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
             
-            Schedule
+            Programma
           </a>
         </li>
       
@@ -404,8 +404,14 @@
 <p>Bei Cmake 2.8.4 wird VS 2010 oft gewählt. Die Installation von VS 2010 erzähle ich hier nicht mehr.</p>
 <p><strong>Schritt 2: Solution Datei mit CMake erzeugen</strong></p>
 <p>Cmake GUI aufmachen. Es gibt Zwei Verzeichnisse, die wir manuell eingeben müssen. Zum Einen ist die Verzeichnis von source code, wo die obengenannte C++ und CMakeLists.txt liegen. Zum anderen ist die Verzeichnis “where to build the binaries”, wo die erzeugte Solution Datei abgelegt werden soll.<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/2.jpg" alt="&quot;2&quot;"></p>
-<p>Hier muss man die Datei “CMakeLists.txt” beachten, die richtig je nach dem Bedarf implementiert werden muss. Bei mir habe ich so gemacht:<br>    if(WIN32)<br>        cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)<br>    elseif(WIN32)<br>        cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)<br>    endif(WIN32)</p>
-<pre><code>cmake_policy(SET CMP0002 NEW)
+<p>Hier muss man die Datei “CMakeLists.txt” beachten, die richtig je nach dem Bedarf implementiert werden muss. Bei mir habe ich so gemacht:</p>
+<pre><code> if(WIN32)
+    cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)
+ elseif(WIN32)
+    cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
+ endif(WIN32)
+
+cmake_policy(SET CMP0002 NEW)
 cmake_policy(SET CMP0003 NEW)
 cmake_policy(SET CMP0011 NEW)
 
