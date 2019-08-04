@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="Jackie Tian&#39;s Blog">
 <meta property="og:description" content="Automotive data and time-triggered framework (ADTF) ist die weltweit am häufigsten eingesetzte Entwicklungs- und Testumgebung für Fahrerassistenzsysteme. ADTF ist auch ein flexibles Framework. Man kan">
 <meta property="og:locale" content="de">
-<meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/0.PNG">
-<meta property="og:updated_time" content="2019-08-04T09:16:48.254Z">
+<meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/0.JPG">
+<meta property="og:updated_time" content="2019-08-04T09:21:53.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ADTF Filter Entwicklungsprozess">
 <meta name="twitter:description" content="Automotive data and time-triggered framework (ADTF) ist die weltweit am häufigsten eingesetzte Entwicklungs- und Testumgebung für Fahrerassistenzsysteme. ADTF ist auch ein flexibles Framework. Man kan">
-<meta name="twitter:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/0.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/0.JPG">
 
 
 
@@ -238,7 +238,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
             
-            Programma
+            Schedule
           </a>
         </li>
       
@@ -385,7 +385,7 @@
 
       
         <p>Automotive data and time-triggered framework (ADTF) ist die weltweit am häufigsten eingesetzte Entwicklungs- und Testumgebung für Fahrerassistenzsysteme. ADTF ist auch ein flexibles Framework. Man kann sein eignes Softwaremodul (auch als Filter genannt) je nach dem Bedarf programmieren. Als ich im Jahr 2016 bei Audi für mein Praktikum war, habe ich ADTF für mein Projekt benutzt. Damals habe ich meinen eigner Filter in ADTF programmiert, der die Frontkameraerkennung auf Basis von Mobileeye auswertet. Heute brauche ich immer noch mit ADTF am HIL zu arbeiten. Deswegen würde ich gerne das ADTF Filter Entwicklungsprozess zusammenfassen.</p>
-<p>In ADTF werden viele Filter-Vorlage Dateien angeboten, die aus relevante C++ Dateien und Cmake Dateien bestehen. Ich würde hier den Empty-Filter als Beispiel nehmen. Für den Empty-Filter existiert so ein Ordner, der die folgende Dateien beinhaltet:<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/0.PNG" alt="&quot;0&quot;"></p>
+<p>In ADTF werden viele Filter-Vorlage Dateien angeboten, die aus relevante C++ Dateien und Cmake Dateien bestehen. Ich würde hier den Empty-Filter als Beispiel nehmen. Für den Empty-Filter existiert so ein Ordner, der die folgende Dateien beinhaltet:<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/0.JPG" alt="&quot;0&quot;"></p>
 <p>Tatsächlich wird ein Filter durch eine C++ Klasse realisiert. Die relevante C++ Klasse Dateien sind wie oben gezeigt. Zur Implementierung der C++ Klasse brauchen wir zwei Tools nämmlich Cmake und Visual Studio. CMake (cross-platform make) ist ein plattformunabhängiges Programmierwerkzeug für die Entwicklung und Erstellung von Software. Mit CMake werden aus Skriptdateien (CMakeLists.txt) Makefiles und Projekte für viele integrierte Entwicklungsumgebungen und Compiler erzeugt. Wir lassen Cmake die Solution Datei erzeugen, die im Visual Studio benutzt wird. Danach können wir die Solution Datei mit Visual Studio öffnen und je nach der Anforderungen weiter programmieren. Anschließend bilden wir die Source code und ein Plugin wird erzeugt. Am Ende integrieren wir das Plugin ins ADTF, indem wir im ADTF GUI die Verzeichnis des Plugins hinzufügen.</p>
 <p>Der Prozess ist jetzt klar. </p>
 <p>Schritt 1: CMake 2.8.4 und Visual Studio 2010 installieren.</p>
