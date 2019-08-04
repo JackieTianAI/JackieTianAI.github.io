@@ -235,7 +235,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
             
-            Programma
+            Schedule
           </a>
         </li>
       
@@ -395,11 +395,11 @@
 <p><strong>Schritt 2: Solution Datei mit CMake erzeugen</strong></p>
 <p>Cmake GUI aufmachen. Es gibt Zwei Verzeichnisse, die wir manuell eingeben müssen. Zum Einen ist die Verzeichnis von source code, wo die obengenannte C++ und CMakeLists.txt liegen. Zum anderen ist die Verzeichnis “where to build the binaries”, wo die erzeugte Solution Datei abgelegt werden soll.<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/2.jpg" alt="&quot;2&quot;"></p>
 <p>Hier muss man die Datei “CMakeLists.txt” beachten, die richtig je nach dem Bedarf implementiert werden muss. Bei mir habe ich so gemacht:</p>
-<pre><code> if(WIN32)
-    cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)
- elseif(WIN32)
-    cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
- endif(WIN32)
+<pre><code>if(WIN32)
+   cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)
+elseif(WIN32)
+   cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
+endif(WIN32)
 
 cmake_policy(SET CMP0002 NEW)
 cmake_policy(SET CMP0003 NEW)
