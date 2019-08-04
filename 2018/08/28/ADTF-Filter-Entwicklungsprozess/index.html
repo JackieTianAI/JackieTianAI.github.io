@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/9.PNG">
 <meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/10.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/08/28/ADTF-Filter-Entwicklungsprozess/11.PNG">
-<meta property="og:updated_time" content="2019-08-04T10:08:00.160Z">
+<meta property="og:updated_time" content="2019-08-04T10:12:33.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ADTF Filter Entwicklungsprozess">
 <meta name="twitter:description" content="Automotive data and time-triggered framework (ADTF) ist die weltweit am häufigsten eingesetzte Entwicklungs- und Testumgebung für Fahrerassistenzsysteme. ADTF ist auch ein flexibles Framework. Man kan">
@@ -400,17 +400,22 @@
 <p>Tatsächlich wird ein Filter durch eine C++ Klasse realisiert. Die relevante C++ Klasse Dateien sind wie oben gezeigt. Zur Implementierung der C++ Klasse brauchen wir zwei Tools nämmlich Cmake und Visual Studio. CMake (cross-platform make) ist ein plattformunabhängiges Programmierwerkzeug für die Entwicklung und Erstellung von Software. Mit CMake werden aus Skriptdateien (CMakeLists.txt) Makefiles und Projekte für viele integrierte Entwicklungsumgebungen und Compiler erzeugt. Wir lassen Cmake die Solution Datei erzeugen, die im Visual Studio benutzt wird. Danach können wir die Solution Datei mit Visual Studio öffnen und je nach der Anforderungen weiter programmieren. Anschließend bilden wir die Source code und ein Plugin wird erzeugt. Am Ende integrieren wir das Plugin ins ADTF, indem wir im ADTF GUI die Verzeichnis des Plugins hinzufügen.</p>
 <p>Der Prozess ist jetzt klar. </p>
 <p>Schritt 1: CMake 2.8.4 und Visual Studio 2010 installieren.</p>
-<pre><code>ADTF erfordert mindestens Cmake 2.8.4. Wenn man ADTF schon installiert hat, findet man auch die Installationsdatei von Cmake 2.8.4 unter ADTF Installationsverzeichnis wie &quot;C:\Program Files\ADTF\2.13.0\bin\extern&quot;.(Bei mir habe ich ADTF 2.13.0 installiert) Dann kann man die .exe Datei einfach doppelt klicken und Cmake installieren.
-</code></pre><p><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/1.PNG" alt="&quot;1&quot;"></p>
+<p>ADTF erfordert mindestens Cmake 2.8.4. Wenn man ADTF schon installiert hat, findet man auch die Installationsdatei von Cmake 2.8.4 unter ADTF Installationsverzeichnis wie “C:\Program Files\ADTF\2.13.0\bin\extern”.(Bei mir habe ich ADTF 2.13.0 installiert) Dann kann man die .exe Datei einfach doppelt klicken und Cmake installieren.<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/1.PNG" alt="&quot;1&quot;"></p>
 <p>Bei Cmake 2.8.4 wird VS 2010 oft gewählt. Die Installation von VS 2010 erzähle ich hier nicht mehr.</p>
 <p>Schritt 2: Solution Datei mit CMake erzeugen</p>
 <p>Cmake GUI aufmachen. Es gibt Zwei Verzeichnisse, die wir manuell eingeben müssen. Zum Einen ist die Verzeichnis von source code, wo die obengenannte C++ und CMakeLists.txt liegen. Zum anderen ist die Verzeichnis “where to build the binaries”, wo die erzeugte Solution Datei abgelegt werden soll.<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/2.jpg" alt="&quot;2&quot;"></p>
-<p>Hier muss man die Datei “CMakeLists.txt” beachten, die richtig je nach dem Bedarf implementiert werden muss. Bei mir habe ich so gemacht:<br>if(WIN32)<br>    cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)<br>elseif(WIN32)<br>    cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)<br>endif(WIN32)</p>
-<p>cmake_policy(SET CMP0002 NEW)<br>cmake_policy(SET CMP0003 NEW)<br>cmake_policy(SET CMP0011 NEW)</p>
-<p>project(adtf_examples)</p>
-<p>find_package(ADTF REQUIRED)</p>
-<p>if(SDL_LIBRARY)<br>    if(WIN32)</p>
-<pre><code>    # because FindSDL.cmake is different between the various cmake versions
+<p>Hier muss man die Datei “CMakeLists.txt” beachten, die richtig je nach dem Bedarf implementiert werden muss. Bei mir habe ich so gemacht:<br>    if(WIN32)<br>        cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)<br>    elseif(WIN32)<br>        cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)<br>    endif(WIN32)</p>
+<pre><code>cmake_policy(SET CMP0002 NEW)
+cmake_policy(SET CMP0003 NEW)
+cmake_policy(SET CMP0011 NEW)
+
+project(adtf_examples)
+
+find_package(ADTF REQUIRED)
+
+if(SDL_LIBRARY)
+if(WIN32)
+    # because FindSDL.cmake is different between the various cmake versions
     # and because there is no variable which points to the dynamic library
     # this list handling is needed
 
@@ -442,11 +447,17 @@
         set(SDL_SHARED_LIB_FOUND FALSE CACHE INTERNAL &quot;&quot;)
     endif(EXISTS &quot;${SDL_SHARED_LIB}&quot;)
 endif(WIN32)
-</code></pre><p>endif(SDL_LIBRARY)</p>
-<p>adtf_add_filter(demo_empty demoemptyfilter.h stdafx.h stdafx.cpp demoemptyfilter.cpp)<br>adtf_install_plugin(demo_empty src/examples/bin)</p>
-<p>adtf_set_folder(demo_empty examples/filters)</p>
-<p>install(FILES demo_empty.plb.plugindescription DESTINATION src/examples/bin/debug CONFIGURATIONS Debug)<br>install(FILES demo_empty.plb.plugindescription DESTINATION src/examples/bin CONFIGURATIONS Release RelWithDebInfo)</p>
-<p>Cofigure starten. Es wird das Generator für das Projekt konfiguriert:<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/3.jpg" alt="&quot;3&quot;"></p>
+endif(SDL_LIBRARY)
+
+
+adtf_add_filter(demo_empty demoemptyfilter.h stdafx.h stdafx.cpp demoemptyfilter.cpp)
+adtf_install_plugin(demo_empty src/examples/bin)
+
+adtf_set_folder(demo_empty examples/filters)
+
+install(FILES demo_empty.plb.plugindescription DESTINATION src/examples/bin/debug CONFIGURATIONS Debug)
+install(FILES demo_empty.plb.plugindescription DESTINATION src/examples/bin CONFIGURATIONS Release RelWithDebInfo)
+</code></pre><p>Cofigure starten. Es wird das Generator für das Projekt konfiguriert:<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/3.jpg" alt="&quot;3&quot;"></p>
 <p>Finish klicken. Es wird ein Fehler angezeigt, der heißt “Error in configuration process, project files may be invalid”. Es ist normal. OK klicken. </p>
 <p><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/4.jpg" alt="&quot;4&quot;"></p>
 <p>Und zwei neue Verzeichnisse, die rot markiert werden, müssen wir eingeben. Zum Einen ist es “ADTF_DIR”, wobei wir die ADTF Installationsverzeichnis eingeben müssen. Zum anderen ist es “CMAKE_INSTALL_PREFIX”, wobei wir irgendwo eingeben können, damit das am Ende erzeugtes Plugin hierbei abgespeichert werden kann.<br><img src="/2018/08/28/ADTF-Filter-Entwicklungsprozess/5.jpg" alt="&quot;5&quot;"></p>
